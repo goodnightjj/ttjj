@@ -3,8 +3,7 @@
 <head>
 
 <link rel="stylesheet" href="plangular.css"/>
-<link rel="stylesheet" href="home.css"/>
-<link rel="Shortcut Icon" href="http://www.semiitalic.com/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="mousai.css"/>
 
 <title>Mousai</title>
 
@@ -39,31 +38,45 @@
                                `-'     `-'  `-'     `-'
 */
 
+body {background: url(bg.jpg) no-repeat top left fixed;}
+
+#desc {text-align: center; color: white;}
+#desc img {margin: 100px auto 0;}
+#homep {font-size: 16px; width: 260px; margin: 24px auto -40px; padding: 0;}
+
+/*contribute*/
+#join {clear: both; margin-top: 80px; text-align: center;}
+#joinbutton {color: white; text-decoration: none; font: 16px/150% Arial, Helvetica, sans-serif; padding: 15px 30px; background: #FA4242; border-radius: 5px;}
+#joinbutton:hover {
+  background: #FC4A50;
+  -webkit-transition: background 0.3s ease-in 0.2s;
+  -moz-transition: background 0.3s ease-in 0.2s;
+  transition: background 0.3s ease-in 0.2s;
+}
+
+#social {width: 113px; margin: 300px auto 0;}
+#social1 {float: left; margin: 0; opacity: 0.8;}
+#social2 {float: left; margin: 0 20px; opacity: 0.8;}
+#social3 {float: left; margin: 0; opacity: 0.8;}
+#social1:hover, #social2:hover, #social3:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-in 0.2s;
+  -moz-transition: opacity 0.3s ease-in 0.2s;
+  transition: opacity 0.3s ease-in 0.2s;
+}
+
+@media screen and (max-height: 800px) {
+  #social {margin: 150px auto 0;}
+}
+
+@media screen and (max-height: 640px) {
+  #social {margin: 100px auto 0;}
+}
+
 </style>
 </head>
 
 <body>
-
-  <div id="screen"></div>
-
-  <div class="rightpanel">
-    <div id="desc">
-      <img src="homemousai.png" />
-      <p id="homep">Discover fresh new indie bands<br />and support the industry</p>
-    </div>
-
-    <div id="join">
-      <a id="joinbutton" href="http://www.semiitalic.com/mousai/prototype_v6/Innervisions" id="contributebutton">Join Mousai</a>
-    </div>
-
-    <div id="social">
-      <div id="socialwrapper">
-        <a href="http://www.facebook.com/projectmousai"><img id="social1" src="facebook.png" /></a>
-        <a href="http://www.twitter.com/semiitalic"><img id="social2" src="twitter.png" /></a>
-        <a href="http://www.semiitalic.tumblr.com"><img id="social3" src="tumblr.png" /></a>
-      </div>
-    </div>
-  </div>
 
 <script type="text/javascript">
 
@@ -73,8 +86,24 @@ $(document).ready(function(){
     });
 });
 
-var w = window.innerWidth - 5,
+$(function() {  
+    $("#btn").click(function() {  
+        $(".rightpanel").toggleClass("rightpanel-move");
+    });
+});
+
+$(function() {  
+    $("#btn2").click(function() {  
+        $(".rightpanel").toggleClass("rightpanel-move");
+    });
+});
+
+var w = window.innerWidth - 446,
     h = window.innerHeight - 5;
+
+    if (window.innerWidth < 981){
+        w = window.innerWidth - 5;
+    }
 
 var vis = d3.select("body").append("svg:svg")
     .attr("width", w)
@@ -84,7 +113,7 @@ d3.json("indie.json", function(json) {
     var force = d3.layout.force()
         .nodes(json.nodes)
         .links(json.links)
-        .gravity(.01)
+        .gravity(.05)
         .distance(140)
         .charge(-150)
         .size([w, h])
@@ -159,6 +188,34 @@ d3.json("indie.json", function(json) {
     };
 
 </script>
+
+  <div id="header">
+    <a href="#"><img id="nav" src="nav.png" /></a>
+    <a href="http://www.semiitalic.com/mousai/prototype_v6/Innervisions"><img id="login" src="homelogin.png" /></a>
+  </div>
+
+  <input type="button" value="" id="btn2"></input>
+
+  <div class="rightpanel">
+    <input type="button" value="" id="btn"></input>
+
+    <div id="desc">
+      <img src="homemousai.png" />
+      <p id="homep">Discover fresh new indie bands<br />and support the industry</p>
+    </div>
+
+    <div id="join">
+      <a id="joinbutton" href="http://www.semiitalic.com/mousai/prototype_v6/Innervisions" id="contributebutton">Join Mousai</a>
+    </div>
+
+    <div id="social">
+      <div id="socialwrapper">
+        <a href="http://www.facebook.com/projectmousai"><img id="social1" src="facebook.png" /></a>
+        <a href="http://www.twitter.com/semiitalic"><img id="social2" src="twitter.png" /></a>
+        <a href="http://goodnightism.tumblr.com/"><img id="social3" src="tumblr.png" /></a>
+      </div>
+    </div>
+  </div>
 
 <script type="text/javascript">
 
