@@ -7,8 +7,6 @@ body {
 	height: 100%;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato:300,900');
-
 h1, h2, h3, p, a {
 	font-family: 'lato', sans-serif;
 	text-transform: uppercase;
